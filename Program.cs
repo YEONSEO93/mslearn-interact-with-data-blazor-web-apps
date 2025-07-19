@@ -1,4 +1,5 @@
 using BlazingPizza.Data;
+using BlazingPizza.Services;
 var builder = WebApplication.CreateBuilder(args);
 
 builder.Services.AddRazorPages();
@@ -7,6 +8,9 @@ builder.Services.AddHttpClient();
 // AddHttpClient statement allows the app to access HTTP commands
 builder.Services.AddSqlite<PizzaStoreContext>("Data Source=pizza.db");
 // registers the new PizzaStoreContext and provides the filename for the SQLite database
+builder.Services.AddScoped<OrderState>();
+// adds the new OrderState service. 
+// With this code in place, we can now use it in the index.razor component.
 
 var app = builder.Build();
 
